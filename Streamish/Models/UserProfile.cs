@@ -13,6 +13,8 @@ namespace Streamish.Models
 
         [Required]
         public string Email { get; set; }
+        public string Bio { get; set; }
+        public string Url { get; set; }
 
         public string ImageUrl { get; set; }
 
