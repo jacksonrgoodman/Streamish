@@ -32,11 +32,29 @@ namespace Streamish.Controllers
             return Ok(video);
         }
 
+        [HttpGet("search")]
+        public IActionResult Search(string q, bool sortDesc)
+        {
+            return Ok(_videoRepository.Search(q, sortDesc));
+        }
+
+
         [HttpGet("GetWithComments")]
         public IActionResult GetWithComments()
         {
             var videos = _videoRepository.GetAllWithComments();
             return Ok(videos);
+        }
+
+        [HttpGet("{id}/comments")]
+        public IActionResult GetVideoByIdWithComments(int id)
+        {
+            var video = _videoRepository.GetVideoByIdWithComments(id);
+            if (video == null)
+            {
+                return NotFound();
+            }
+            return Ok(video);
         }
 
         [HttpPost]
