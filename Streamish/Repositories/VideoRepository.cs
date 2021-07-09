@@ -319,14 +319,14 @@ namespace Streamish.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     var sql = @"
-              SELECT v.Id, v.Title, v.Description, v.Url, v.DateCreated AS VideoDateCreated, v.UserProfileId,
+                        SELECT v.Id, v.Title, v.Description, v.Url, v.DateCreated AS VideoDateCreated, v.UserProfileId,
 
-                     up.Name, up.Email, up.DateCreated AS UserProfileDateCreated,
-                     up.ImageUrl AS UserProfileImageUrl
+                             up.Name, up.Email, up.DateCreated AS UserProfileDateCreated,
+                             up.ImageUrl AS UserProfileImageUrl
                         
-                FROM Video v 
-                     JOIN UserProfile up ON v.UserProfileId = up.Id
-               WHERE v.Title LIKE @Criterion OR v.Description LIKE @Criterion";
+                        FROM Video v 
+                             JOIN UserProfile up ON v.UserProfileId = up.Id
+                       WHERE v.Title LIKE @Criterion OR v.Description LIKE @Criterion";
 
                     if (sortDescending)
                     {
