@@ -19,7 +19,7 @@ namespace Streamish.Repositories
                 {
                     cmd.CommandText = @"
                        SELECT Id, Name, Email, DateCreated,
-                              ImageUrl, Bio, Url
+                              ImageUrl
                          FROM UserProfile
                         ORDER BY DateCreated
                     ";
@@ -34,10 +34,8 @@ namespace Streamish.Repositories
                             Id = DbUtils.GetInt(reader, "Id"),
                             Name = DbUtils.GetString(reader, "Name"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            Bio = DbUtils.GetString(reader, "Bio"),
-                            Url = DbUtils.GetString(reader, "Url"),
-                            DateCreated = DbUtils.GetDateTime(reader, "UserProfileDateCreated"),
-                            ImageUrl = DbUtils.GetString(reader, "UserProfileImageUrl")
+                            DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
+                            ImageUrl = DbUtils.GetString(reader, "ImageUrl")
                         });
                     }
 
@@ -58,7 +56,7 @@ namespace Streamish.Repositories
                 {
                     cmd.CommandText = @"
                           SELECT Id, Name, Email, DateCreated,
-                              ImageUrl, Bio , Url
+                              ImageUrl
                          FROM UserProfile
                            WHERE Id = @Id";
 
@@ -74,10 +72,8 @@ namespace Streamish.Repositories
                             Id = DbUtils.GetInt(reader, "Id"),
                             Name = DbUtils.GetString(reader, "Name"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            Bio = DbUtils.GetString(reader, "Bio"),
-                            Url = DbUtils.GetString(reader, "Url"),
-                            DateCreated = DbUtils.GetDateTime(reader, "UserProfileDateCreated"),
-                            ImageUrl = DbUtils.GetString(reader, "UserProfileImageUrl")
+                            DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
+                            ImageUrl = DbUtils.GetString(reader, "ImageUrl")
                         };
                     }
 
@@ -96,16 +92,15 @@ namespace Streamish.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO UserProfile (Name, Email, DateCreated, Url, ImageUrl, Bio)
+                        INSERT INTO UserProfile (Name, Email, DateCreated, ImageUrl)
                         OUTPUT INSERTED.ID
-                        VALUES (@Name, @Email, @DateCreated, @Url, @ImageUrl, @Bio)";
+                        VALUES (@Name, @Email, @DateCreated, @ImageUrl)";
 
                     DbUtils.AddParameter(cmd, "@Name", userProfile.Name);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
                     DbUtils.AddParameter(cmd, "@DateCreated", userProfile.DateCreated);
-                    DbUtils.AddParameter(cmd, "@Url", userProfile.Url);
                     DbUtils.AddParameter(cmd, "@ImageUrl", userProfile.ImageUrl);
-                    DbUtils.AddParameter(cmd, "@Bio", userProfile.Bio);
+                    
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
                 }
@@ -124,17 +119,14 @@ namespace Streamish.Repositories
                            SET Name = @Name,
                                Email = @Email,
                                ImageUrl = @ImageUrl,
-                               DateCreated = @DateCreated,
-                               Url = @Url,
-                               Bio = @Bio
+                               DateCreated = @DateCreated
+                               
                          WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Title", userProfile.Name);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
                     DbUtils.AddParameter(cmd, "@DateCreated", userProfile.DateCreated);
-                    DbUtils.AddParameter(cmd, "@Url", userProfile.Url);
                     DbUtils.AddParameter(cmd, "@ImageUrl", userProfile.ImageUrl);
-                    DbUtils.AddParameter(cmd, "@Bio", userProfile.Bio);
 
                     cmd.ExecuteNonQuery();
                 }
