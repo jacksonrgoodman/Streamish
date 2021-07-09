@@ -14,6 +14,7 @@
 1. Create the Streamish database using [the SQL script](https://raw.githubusercontent.com/nashville-software-school/bangazon-inc/cohort-47/book-3-web-api/chapters/sql/Streamish.sql).
 2. Run the server in [![VS](https://img.shields.io/badge/VS_2019-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)](#)
 3. Play around in Swagger
+4. go into `Streamish/Streamish/client`, then run `npm start`
 ## Contributing
 [Jackson Goodman](https://github.com/jacksonrgoodman)  
 
