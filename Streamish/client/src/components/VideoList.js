@@ -11,6 +11,7 @@ const VideoList = () => {
 
     useEffect(() => {
         getVideos();
+        console.log(videos);
     }, []);
 
     return (
