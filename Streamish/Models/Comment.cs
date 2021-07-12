@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public string Message { get; set; }
         public int UserProfileId { get; set; }
+        public string Commentor { get; set; }
         public UserProfile UserProfile { get; set; }
         public int VideoId { get; set; }
         public Video Video { get; set; }

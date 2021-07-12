@@ -24,6 +24,16 @@
   color: white;
 }
 
+.displayFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.widthReduce {
+  width: 75%;
+}
+
 .App-link {
   color: #61dafb;
 }

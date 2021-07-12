@@ -32,7 +32,18 @@ namespace Streamish.Controllers
             return Ok(userProfile);
         }
 
+        [HttpGet("GetWithVideos/{id}")]
+        public IActionResult GetUserWithVideos(int id)
+        {
+            var user = _userProfileRepository.GetUserWithVideos(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
 
+        
 
         [HttpPost]
         public IActionResult Post(UserProfile userProfile)
@@ -60,11 +71,7 @@ namespace Streamish.Controllers
             return NoContent();
         }
 
-        //[HttpGet("search")]
-        //public IActionResult Search(string q, bool sortDesc)
-        //{
-        //    return Ok(_userProfileRepository.Search(q, sortDesc));
-        //}
+        
 
     }
 }
