@@ -38,6 +38,13 @@ namespace Streamish.Controllers
             return Ok(_videoRepository.Search(q, sortDesc));
         }
 
+        [HttpGet("hottest")]
+        public IActionResult SearchByDate(string since, bool sortDesc)
+        {
+            DateTime dt = DateTime.Parse(since);
+
+            return Ok(_videoRepository.SearchByDate(dt, sortDesc));
+        }
 
         [HttpGet("GetWithComments")]
         public IActionResult GetWithComments()

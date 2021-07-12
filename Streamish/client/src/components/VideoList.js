@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Video from './Video';
+import VideoNoComment from './VideoNoComment';
 import { getAllVideos } from "../modules/videoManager";
 
 const VideoList = () => {
@@ -11,18 +12,30 @@ const VideoList = () => {
 
     useEffect(() => {
         getVideos();
-        console.log(videos);
     }, []);
 
-    return (
-        <div className="container">
-            <div className="row justify-content-center">
-                {videos.map((video) => (
-                    <Video video={video} key={video.id} />
-                ))}
+    if (videos.comments != null) {
+        return (
+            <div className="container">
+                <div className="row justify-content-center">
+                    {videos.map((video) => (
+                        <Video video={video} key={video.id} />
+                    ))}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+    else {
+        return (
+            <div className="container">
+                <div className="row justify-content-center">
+                    {videos.map((video) => (
+                        <VideoNoComment video={video} key={video.id} />
+                    ))}
+                </div>
+            </div>
+        );
+    }
 };
 
 export default VideoList;
